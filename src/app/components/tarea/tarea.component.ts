@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Tarea } from 'src/app/models/Tarea';
+import { Task } from 'src/app/models/Task';
 
 @Component({
   selector: 'app-tarea',
@@ -7,13 +7,11 @@ import { Tarea } from 'src/app/models/Tarea';
   styleUrls: ['./tarea.component.css']
 })
 export class TareaComponent {
-  tasksList: Tarea[] = []
+  tasksList: Task[] = []
   taskName = ""
   
   addTask() {
-    console.log(this.tasksList)
-
-    const task: Tarea = {
+    const task: Task = {
       name: this.taskName,
       state: false
     }
@@ -23,5 +21,14 @@ export class TareaComponent {
 
     this.taskName = ""
   }
-}
+
+  deleteTask(index: number): void {
+    this.tasksList.splice(index, 1)
+  }
+
+  updateTask(task: Task, i: number): void {
+    this.tasksList[i].state = !task.state
+  }
+
+ }
   
